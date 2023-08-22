@@ -152,7 +152,7 @@ echo " - Convert phase to radians ... Done."
 echo -ne " - Creating brain mask ...\r "
 mri_synthstrip \
     -i ${mag1}.nii.gz \
-    -m ${mag1}_brain_mask.nii.gz &>/dev/null
+    -m brain_mask.nii.gz
 
 echo " - Creating brain mask ... Done."
 
@@ -160,12 +160,12 @@ echo -ne " - Unwrapping phase images ...\r "
 prelude \
     -a $mag1 \
     -p ${phs1}_in_Radians \
-    -m ${mag1}_brain_mask \
+    -m brain_mask \
     -o ${phs1}_in_Radians_Unwrapped
 prelude \
     -a $mag2 \
     -p ${phs2}_in_Radians \
-    -m ${mag1}_brain_mask \
+    -m brain_mask \
     -o ${phs2}_in_Radians_Unwrapped
 echo " - Unwrapping phase images ... Done."
 
