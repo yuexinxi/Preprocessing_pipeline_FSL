@@ -125,19 +125,19 @@ echo -ne " - Creating brain mask ...\r "
 mri_synthstrip \
     -i ${mag1}.nii.gz \
     -o ${mag1}_brain.nii.gz \
-    -m brainmask.nii.gz
+    -m brain_mask.nii.gz
 
 echo " - Creating brain mask ... Done."
 
 echo -ne " - Creating stripped magnitude and phase images ...\r "
 fslmaths \
     $mag2 \
-    -mul brainmask \
+    -mul brain_mask \
     ${mag2}_brain
 
 fslmaths \
     ${phs} \
-    -mul brainmask \
+    -mul brain_mask \
     ${phs}_brain
 
 echo " - Creating stripped magnitude and phase images ... Done."
