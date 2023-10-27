@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [[ "$1" == "-h" || $# -ne 2 ]]; then
+if [[ "$1" == "-h" || $# -eq 0 ]]; then
     echo "Usage:"
     echo "$(basename $0) path_to_data path_to_masks"
     echo "-------------------------------------------------------------------------"
@@ -25,8 +25,6 @@ list_image=`ls $image_dir`
 # check mask existence
 for filename in $list_image; do
     if ! [ -e ${mask_dir}/${filename} ]; then
-        echo $mask_dir
-        echo $filename
         echo "The mask of ${filename} does not exist."
         exit 1
         fi
