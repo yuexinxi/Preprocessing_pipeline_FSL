@@ -91,15 +91,24 @@ fslmaths \
     -Tmean \
     frequency_map_mni.nii.gz
 
+:'
+# create screenshots of the registered images for qc
+for filename in ${list_image[@]}
+do
+    fsleyes render \
+    --outfile ${filename}.png \
+    ${image_dir}/${filename}_reg_to_mni
+'
+
 : '
-# register the reoriented images to MNI skull
-# flirt \
-#    -in 004_reorient.nii.gz \
-#    -ref $FSLDIR/data/standard/MNI152_T1_2mm.nii.gz \
-#    -dof 7 \
-#    -out reg_004_reorient_to_mni \
-#    -omat reg_004_reorient_to_mni \
-#    -searchrx -10 10 \
-#    -searchry -10 10 \ 
-#    -searchrz -10 10
+# register the reoriented images to MNI limiting search angles
+flirt \
+    -in ${image_dir}/${filename}_reorient \
+   -ref $FSLDIR/data/standard/MNI152_T1_2mm.nii.gz \
+   -dof 7 \
+   -out ${image_dir}/${filename}_reg_to_mni \
+   -omat ${image_dir}/${filename}_reg_to_mni \
+   -searchrx -10 10 \
+   -searchry -10 10 \ 
+   -searchrz -10 10
 '
