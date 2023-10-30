@@ -98,6 +98,7 @@ do
     fsleyes render \
     --outfile ${filename}.png \
     ${image_dir}/${filename}_reg_to_mni
+done
 '
 
 : '
